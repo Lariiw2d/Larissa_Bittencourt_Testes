@@ -1,3 +1,13 @@
+
+<!-- FALTA ALTERAAR -->
+ <!-- FALTA ALTERAAR -->
+  <!-- FALTA ALTERAAR -->
+   <!-- FALTA ALTERAAR -->
+    <!-- FALTA ALTERAAR -->
+     <!-- FALTA ALTERAAR -->
+    <!-- FALTA ALTERAAR -->
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -45,13 +55,18 @@
     
         <form>
             <p align="center">
-                <font size="7" face="Arial">U.C Testes de Sistemas - SENAI SC</font>
+                <font size="7" face="Georgia" color="#0d6efd">U.C Testes de Sistemas - SENAI SC</font>
             </p>
         </form>
-        <h4>
-            <font color="green">
-                <center>Formulário de Alteração de Dados do Aluno</center></font>
+
+        <h4 class="text-center text-secondary mb-4">
+            <center>Formulário de Alteração de Dados do Aluno</center>
         </h4>
+
+        <hr class="border border-primary border-2">
+        <!--<h4 class="text-center text-secondary mb-4">
+                <center>Formulário de Alteração de Dados do Aluno</center>
+        </h4>-->
 
         <hr width="100%" align="center" size="3" color="blue"> <br>
 

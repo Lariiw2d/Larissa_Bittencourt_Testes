@@ -1,25 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar</title>
-</head>
-<body style="font-family: helvetica;">
-        <p align="center">
-            <font size="7" face="Arial">U.C Testes de Sistemas - SENAI SC</font>
-        </p>
-    <h4>
-        <font color="red">
-            <center>Dados do Aluno</center>
-        </font>   
-    </h4>
 
-    <hr width="100%" align="center" size="3" color="blue"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+    <div class="card shadow-lg border-0">
+        <font size="7" face="Georgia" color="#0d6efd">
+            <div class="card-header bg-primary text-white text-center">
+                <h1 class="mb-0">U.C Testes de Sistemas - SENAI SC</h1>
+            </div>
+        </font>
+
+        <div class="card-body">
+
+            <h3 class="text-center text-secondary mb-4">
+                Dados do Aluno
+            </h3>
+
+            <hr class="border-primary border-3">
 
 <?php
     if(empty($_POST["Nome"])){
-        echo "Por favor preencher o campo do Nome";
+        echo "<div class='alert alert-warning'>Por favor preencher o campo do Nome</div>";
     } else {
         $nome = $_POST["Nome"];
         $conexao = new mysqli("127.0.0.1","root","","sistemaescola");
@@ -30,61 +40,85 @@
         $conexao->set_charset("utf8");
 
         $sql = "SELECT id,nome,dataNascimento,nomePai,nomeMae,telefone,email,sexo,bairro FROM aluno WHERE nome LIKE '%$nome%'";
-        echo $sql."<hr>";
+        echo "<div class='alert alert-secondary'>$sql</div>";
 
         $result = $conexao->query($sql);
 
         if($result->num_rows > 0){
             while($linha = $result->fetch_assoc()){
-                echo "Id: ".$linha["id"]."<br>";
-                echo "Nome: ".$linha["nome"]."<br>";
-                echo "Data de Nascimento: ".$linha["dataNascimento"]."<br>";
-                echo "Nome do Pai: ".$linha["nomePai"]."<br>";
-                echo "Nome da Mãe: ".$linha["nomeMae"]."<br>";
-                echo "Telefone: ".$linha["telefone"]."<br>";
-                echo "Email: ".$linha["email"]."<br>";
-                echo "Sexo: ".$linha["sexo"]."<br>";
-                echo "Bairro: ".$linha["bairro"]."<br><hr>";
+
+                echo "
+                <div class='card mb-3 shadow-sm'>
+                    <div class='card-body'>
+                        <p><strong>Id:</strong> ".$linha["id"]."</p>
+                        <p><strong>Nome:</strong> ".$linha["nome"]."</p>
+                        <p><strong>Data de Nascimento:</strong> ".$linha["dataNascimento"]."</p>
+                        <p><strong>Nome do Pai:</strong> ".$linha["nomePai"]."</p>
+                        <p><strong>Nome da Mãe:</strong> ".$linha["nomeMae"]."</p>
+                        <p><strong>Telefone:</strong> ".$linha["telefone"]."</p>
+                        <p><strong>Email:</strong> ".$linha["email"]."</p>
+                        <p><strong>Sexo:</strong> ".$linha["sexo"]."</p>
+                        <p><strong>Bairro:</strong> ".$linha["bairro"]."</p>
+                    </div>
+                </div>";
             }
         } else {
-            echo "Sem resultado <br>";
+            echo "<div class='alert alert-danger'>Sem resultado</div>";
         }
+
         $conexao->close();
     }
-?>  
+?>
 
+            <hr class="border-primary border-3">
 
-<hr width="100%" align="center" size="3" color="blue">
-        <table width="400" border="0" cellspacing="0" cellspading="0" align="center">
-            <tr>
-            <td>
+            <div class="row g-2 text-center">
+
+                <div class="col-md-3">
                     <form method="POST" action="formAluno.php">
-                        <center><input type="submit" value="Registrar Novo Aluno"></center>
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Registrar Novo Aluno">
                     </form>
-                </td>
-                <td>
-                    <form method="POST" action="listar.php">
-                        <center><input type="submit" value="Listar Alunos"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="atualizar.php">
-                        <center><input type="submit" value="Atualizar Dados do  Aluno"></center>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="apagar.php">
-                        <center><input type="submit" value="Excluir Dados do  Aluno"></center>
-                    </form>
-                </td>
-            </tr>
-        </table><br>
-        <nav align="center">
-            <a href="index.php">| Home |</a>
-            <a href="formMatricula.php"> Matricula |</a>
-        </nav>
+                </div>
 
-    <hr>
-    <p align="center">Prof. Sergio Luiz da Silveira</p> 
+                <div class="col-md-3">
+                    <form method="POST" action="listar.php">
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Listar Alunos">
+                    </form>
+                </div>
+
+                <div class="col-md-3">
+                    <form method="POST" action="atualizar.php">
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Atualizar Dados do Aluno">
+                    </form>
+                </div>
+
+                <div class="col-md-3">
+                    <form method="POST" action="apagar.php">
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Excluir Dados do Aluno">
+                    </form>
+                </div>
+
+            </div>
+
+            <nav class="text-center mb-4">
+                    <a href="index.php" class="btn btn-link">
+                        Home
+                    </a>
+
+                    <a href="../CRUD_MATRICULA/formMatricula.php" class="btn btn-link">
+                        Matrícula
+                    </a>
+            </nav>
+
+        </div>
+
+        <div class="card-footer text-center text-muted">
+            Prof. Sergio Luiz da Silveira
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualiza Dados</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="font-family: helvetica;">
-    <form>
-        <p align="center">
-            <font size="7" face="Arial">U.C Testes de Sistemas - SENAI SC</font>
-        </p>
-    </form>
-    <h4>
-         <font color="red">
-            <center>Alteração de Dados do Cadastro</center>
-        </font>   
-    </h4>
 
-    <hr width="100%" align="center" size="3" color="blue">
+<body class="bg-light">
 
+<div class="container py-4">
+
+    <div class="card shadow-lg border-0">
+        <font size="7" face="Georgia" color="#0d6efd">
+            <div class="card-header bg-primary text-dark text-center">
+                <h1 class="mb-0">U.C Testes de Sistemas - SENAI SC</h1>
+            </div>
+        </font>
+        <div class="card-body">
+
+            <h3 class="text-center text-secondary mb-4">
+                Alteração de Dados do Cadastro
+            </h3>
+
+            <hr class="border-primary border-3">
 
 <?php
-
 if (isset($_POST["ID"]) && isset($_POST["Nome"]) && isset($_POST["DataNasc"]) && isset($_POST["NomePai"]) && isset($_POST["NomeMae"]) && isset($_POST["Telefone"]) && isset($_POST["Email"]) && isset($_POST["Sexo"]) && $_POST["Bairro"] != ''){
-    
+
     $ID = $_POST["ID"];
     $nome = $_POST["Nome"];
     $datanasc = $_POST["DataNasc"];
@@ -37,71 +42,94 @@ if (isset($_POST["ID"]) && isset($_POST["Nome"]) && isset($_POST["DataNasc"]) &&
     if(strlen($datanasc) < 10){
         $erro = "Por Favor inserir uma data válida";
     } else {
+
         if(strlen($telefone)<13){
             $erro = "Por favor inserir um telefone válido";
         } else {
+
             $conexao = new mysqli("127.0.0.1","root","","sistemaescola");
+
             if($conexao->connect_errno){
                 $erro = "Ocorreu um erro na conexão com o banco de dados.";
                 exit;
             }
+
             $conexao->set_charset("utf8");
 
-            $sql = "UPDATE `aluno` SET id = $ID, nome = '$nome', dataNascimento = '$datanasc', nomePai = '$nomepai', nomeMae = '$nomemae', telefone = '$telefone', email = '$email', sexo = '$sexo', bairro = '$bairro' WHERE id='$ID'; ";
+            $sql = "UPDATE aluno SET id = $ID, nome = '$nome', dataNascimento = '$datanasc', nomePai = '$nomepai', nomeMae = '$nomemae', telefone = '$telefone', email = '$email', sexo = '$sexo', bairro = '$bairro' WHERE id='$ID'; ";
 
-            echo $sql."<br>";
+            echo "<div class='alert alert-secondary'>$sql</div>";
 
-            
             if($conexao->query($sql)=== TRUE){
                 $sucesso = "Dados alterados com sucesso!";
             } else {
                 $erro = "Erro :".$sql."<br>".$conexao->error;
             }
+
             $conexao->close();
         }
     }
+
 } else {
     $erro = "Campo obrigatório não preenchido";
 }
 
+if(isset($erro))
+    echo "<div class='alert alert-danger text-center'>$erro</div>";
 
-if(isset($erro)) echo '<div style="color:#F00" align="center">'.$erro.'</div><br><br>';
-
-if(isset($sucesso)) echo '<div style="color:#00F" align="center">'.$sucesso.'</div><br><br>';
-
-
+if(isset($sucesso))
+    echo "<div class='alert alert-success text-center'>$sucesso</div>";
 ?>
 
-<hr width="100%" align="center" size="3" color="blue">
-        <table width="400" border="0" cellspacing="0" cellspading="0" align="center">
-            <tr>
-            <td>
+            <hr class="border-primary border-3">
+
+            <div class="row g-2">
+
+                <div class="col-md-3">
                     <form method="POST" action="formAluno.php">
-                        <center><input type="submit" value="Registrar Novo Aluno"></center>
+                        <input type="submit" class="btn btn-dark text-white w-100"" value="Registrar Novo Aluno">
                     </form>
-                </td>
-                <td>
+                </div>
+
+                <div class="col-md-3">
                     <form method="POST" action="listar.php">
-                        <center><input type="submit" value="Listar Alunos"></center>
+                        <input type="submit" class="btn btn-dark text-white w-100"" value="Listar Alunos">
                     </form>
-                </td>
-                <td>
+                </div>
+
+                <div class="col-md-3">
                     <form method="POST" action="procurar.php">
-                        <center><input type="submit" value="Consultar Aluno"></center>
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Consultar Aluno">
                     </form>
-                </td>
-                <td>
+                </div>
+
+                <div class="col-md-3">
                     <form method="POST" action="apagar.php">
-                        <center><input type="submit" value="Excluir Dados do  Aluno"></center>
+                        <input type="submit" class="btn btn-dark text-white w-100" value="Excluir Dados do Aluno">
                     </form>
-                </td>
-            </tr>
-        </table><br>
-        <nav align="center">
-            <a href="index.php">| Home |</a>
-            <a href="formMatricula.php"> Matricula |</a>
-        </nav>
-        <hr>
-        <p align="center">Prof. Sergio Luiz da Silveira</p> 
+                </div>
+
+            </div>
+
+            <nav class="text-center mb-4">
+                    <a href="index.php" class="btn btn-link">
+                        Home
+                    </a>
+
+                    <a href="../CRUD_MATRICULA/formMatricula.php" class="btn btn-link">
+                        Matrícula
+                    </a>
+            </nav>
+
+        </div>
+
+        <div class="card-footer text-center text-muted">
+            Prof. Sergio Luiz da Silveira
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

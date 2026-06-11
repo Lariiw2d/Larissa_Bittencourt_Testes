@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Aluno</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script>
         function fMasc(objeto,mascara){
             obj=objeto;
@@ -22,11 +25,11 @@
             return cpf;
         }
 
-
         function mTel(tel){
             tel=tel.replace(/\D/g,"");
             tel=tel.replace(/^(\d)/,"($1");
             tel=tel.replace(/(.{3})(\d)/,"$1)$2");
+
             if (tel.length == 9) {
                 tel=tel.replace(/(.{1})$/,"-$1");
             }else if (tel.length == 10) {
@@ -36,72 +39,119 @@
             }else if (tel.length >= 12) {
                 tel=tel.replace(/(.{4})$/,"-$1");
             }
+
             return tel;
         }
-
     </script>
 </head>
-<body style="font-family: helvetica;">
-    
-        <form>
-            <p align="center">
-                <font size="7" face="Arial">U.C Testes de Sistemas - SENAI SC</font>
-            </p>
-        </form>
-        <h4>
-            <font color="green">
-                <center>Formulário de Cadastro do Aluno</center></font>
-        </h4>
 
-        <hr width="100%" align="center" size="3" color="blue"> <br>
+<body class="bg-light">
 
-        <h1 align="center">Dados Pessoais</h1>
+    <div class="container py-5">
 
-        <!-- COLOQUE COMENTARIO NA LINHA ABAIXO PARA REALIZAR OS TESTES-->
-        
-        <form method="POST" action="cadastro.php" align="center"> 
+        <div class="card shadow border-0 rounded-4">
 
-        <!-- RETIRE O COMENTARIO DA LINHA ABAIXO PARA REALIZAR OS TESTES e DEPOIS COMENTE NOVAMENTE-->
+            <div class="card-body p-5">
 
-        <!--<form method="POST" action="../tests/verifica_form.php" align="center"> -->
+                <font size="7" face="Georgia" color="#0d6efd">
+                <h1 class="text-center text-primary mb-2">
+                    U.C Testes de Sistemas - SENAI SC
+                </h1>
+                </font>
+                <!-- <font size="7" face="Georgia" color="#0d6efd"> -->
+                <h4 class="text-center text-secondary mb-4">
+                    Formulário de Cadastro do Aluno
+                </h4>
 
-        <!-- RETIRE O COMENTARIO DA LINHA ABAIXO PARA REALIZAR OS TESTES e DEPOIS COMENTE NOVAMENTE-->
-        <!--form method="POST" action="../tests/valida_form_grava.php" align="center"-->
+                <hr class="mb-5">
                 
-            <table width="500" border="0" cellspacing="0" cellspading="0" align="center">
-                <tr>
-                    <td align="left">Nome do Aluno(a):</td>
-                    <td><input type="text" size="30" name="Nome"></td>
-                </tr>
-                <tr>
-                    <td align="left">Data de Nascimento:</td>
-                    <td><input type="text" size="30" name="DataNasc" placeholder="aaaa/mm/dd" maxlength="10" onkeydown="javascript:fMasc(this,mData)"></td>
-                </tr>
-                <tr>
-                    <td align="left">Nome do Pai:</td>
-                    <td><input type="text" size="30" name="NomePai"></td>
-                </tr>
-                <tr>
-                    <td align="left">Nome da Mãe:</td>
-                    <td><input type="text" size="30" name="NomeMae"></td>
-                </tr>
-                <tr>
-                    <td align="left">Telefone:</td>
-                    <td><input type="text" size="30" name="Telefone" maxlength="14" onkeydown="javascript:fMasc(this,mTel);"></td>
-                </tr>
-                <tr>
-                    <td align="left">E-Mail</td>
-                    <td><input type="text" size="30" name="Email"></td>
-                </tr>
-                <tr>
-                    <td align="left">Sexo</td>
-                    <td><input type="radio" name="Sexo" value="Masculino">Masculino</td>
-                    <td><input type="radio" name="Sexo" value="Feminino">Feminino</td>
-                </tr>
-                <tr>
-                    <td align="left">Bairro</td>
-                    <td>
-                        <select name="Bairro" size="1">
+                <font face="Georgia">
+                <h3 class="text-center mb-4">
+                    Dados Pessoais
+                </h3>
+                </font>
+
+                <!-- COLOQUE COMENTARIO NA LINHA ABAIXO PARA REALIZAR OS TESTES-->
+
+                <form method="POST" action="cadastro.php">
+
+                <!-- RETIRE O COMENTARIO DA LINHA ABAIXO PARA REALIZAR OS TESTES e DEPOIS COMENTE NOVAMENTE-->
+
+                <!--<form method="POST" action="../tests/verifica_form.php"> -->
+
+                <!-- RETIRE O COMENTARIO DA LINHA ABAIXO PARA REALIZAR OS TESTES e DEPOIS COMENTE NOVAMENTE-->
+
+                <!--form method="POST" action="../tests/valida_form_grava.php"-->
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Aluno(a)</label>
+                        <input type="text" class="form-control" name="Nome">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Data de Nascimento</label>
+                        <input type="text"
+                               class="form-control"
+                               name="DataNasc"
+                               placeholder="aaaa/mm/dd"
+                               maxlength="10"
+                               onkeydown="javascript:fMasc(this,mData)">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Pai</label>
+                        <input type="text" class="form-control" name="NomePai">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome da Mãe</label>
+                        <input type="text" class="form-control" name="NomeMae">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Telefone</label>
+                        <input type="text"
+                               class="form-control"
+                               name="Telefone"
+                               maxlength="14"
+                               onkeydown="javascript:fMasc(this,mTel);">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">E-Mail</label>
+                        <input type="text" class="form-control" name="Email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block">Sexo</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="Sexo"
+                                   value="Masculino">
+
+                            <label class="form-check-label">
+                                Masculino
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   name="Sexo"
+                                   value="Feminino">
+
+                            <label class="form-check-label">
+                                Feminino
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Bairro</label>
+
+                        <select name="Bairro" class="form-select">
                             <option></option>
                             <option>Agua Verde</option>
                             <option>Alto da XV</option>
@@ -119,44 +169,71 @@
                             <option>Boqueirão</option>
                             <option>CIC</option>
                         </select>
-                    </td>
-                </tr>
-            </table><br>
-            <center>  
-                <input type="reset" value="Limpar Dados" >
-                <input type="submit" value="Cadastrar Aluno">
-            </center>
-        </form>
-        <hr width="100%" align="center" size="3" color="blue">
-        <table width="400" border="0" cellspacing="0" cellspading="0" align="center">
-            <tr>
-                <td>
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <input type="reset"
+                               value="Limpar Dados"
+                               class="btn btn-outline-danger">
+
+                        <input type="submit"
+                               value="Cadastrar Aluno"
+                               class="btn btn-success">
+                    </div>
+
+                </form>
+
+                <hr class="my-4">
+
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+
                     <form method="POST" action="listar.php">
-                        <center><input type="submit" value="Listar Alunos"></center>
+                        <input type="submit"
+                               value="Listar Alunos"
+                               class="btn btn-dark text-white">
                     </form>
-                </td>
-                <td>
+
                     <form method="POST" action="procurar.php">
-                        <center><input type="submit" value="Consultar Aluno"></center>
+                        <input type="submit"
+                               value="Consultar Aluno"
+                               class="btn btn-dark text-white">
                     </form>
-                </td>
-                <td>
+
                     <form method="POST" action="atualizar.php">
-                        <center><input type="submit" value="Atualizar Dados do  Aluno"></center>
+                        <input type="submit"
+                               value="Atualizar Dados do Aluno"
+                               class="btn btn-dark text-white">
                     </form>
-                </td>
-                <td>
+
                     <form method="POST" action="apagar.php">
-                        <center><input type="submit" value="Excluir Dados do  Aluno"></center>
+                        <input type="submit"
+                               value="Excluir Dados do Aluno"
+                               class="btn btn-dark text-white">
                     </form>
-                </td>
-            </tr>
-        </table><br>
-        <nav align="center">
-            <a href="index.php">| Home |</a>
-            <a href="../CRUD_MATRICULA/formMatricula.php"> Matricula |</a>
-        </nav>
-        <hr>
-        <p align="center">Prof. Sergio Luiz da Silveira</p> 
+
+                </div>
+
+                <nav class="text-center mb-4">
+                    <a href="index.php" class="btn btn-link">
+                        Home
+                    </a>
+
+                    <a href="../CRUD_MATRICULA/formMatricula.php" class="btn btn-link">
+                        Matrícula
+                    </a>
+                </nav>
+
+                <hr>
+
+                <p class="text-center text-muted mb-0">
+                    Prof. Sergio Luiz da Silveira
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
